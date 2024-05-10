@@ -51,10 +51,11 @@ def main(args: argparse.Namespace):
         new_uid = path_to_uid_map[path_to_match]
         # assign the uid to the particle dataset after lookup
         particle_dset["location/micrograph_uid"][index] = new_uid
-        # update also a path to micrograph in particle data (add > in front)
-        particle_dset["location/micrograph_path"][index] = (
-            ">" + uid_to_path_map[new_uid]
-        )
+        # to nie dziala
+        # # update also a path to micrograph in particle data (add > in front)
+        # particle_dset["location/micrograph_path"][index] = (
+        #     ">" + uid_to_path_map[new_uid]
+        # )
 
     # remove local motion correction description fields
     motion = [
