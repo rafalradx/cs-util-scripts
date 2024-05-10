@@ -42,7 +42,7 @@ def main(args: argparse.Namespace):
     motion = ['motion/type', 'motion/path', 'motion/idx','motion/frame_start', 'motion/frame_end', 'motion/zero_shift_frame', 'motion/psize_A']
     particle_dset.drop_fields(motion)
 
-    particle_dset.save(args.prtcls_path+"new_uuid")
+    particle_dset.save(args.prtcls_path+".new_uid")
 
 
 
