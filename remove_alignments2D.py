@@ -41,7 +41,6 @@ def main(args: argparse.Namespace):
     ]
 
     particle_dset.drop_fields(alignments2D)
-
     particle_dset.save(args.prtcls_path)
 
 

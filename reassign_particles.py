@@ -70,6 +70,20 @@ def main(args: argparse.Namespace):
     particle_dset.drop_fields(motion)
     particle_dset.drop_fields("location/micrograph_path")
 
+    # normalize 2Dshifts
+
+    # get pixel_size used in 2D classification of all particles
+    pixel_size = particle_dset["alignments2D/psize_A"].reshape(-1, 1)
+    micrograph_pixel_size = 0.8456
+    # normalize shifts obtained from 2D classification in
+    new_shifts = (
+        particle_dset["alignments2D/shift"] * pixel_size / micrograph_pixel_size
+    )
+    # store new shifts
+    particle_dset["alignments2D/shift"] = new_shifts
+    # store new pixelsize
+    particle_dset["alignments2D/psize_A"] = 0.8456
+
     particle_dset.save(args.prtcls_path + ".new_uid")
 
 
