@@ -35,14 +35,18 @@ def main(args: argparse.Namespace):
         # remove any leading UIDs in the path
         output_path = "_".join(output_path.split("_")[1:])
         return output_path
-
+    
+    # clean path user_name
     # {path: uid} in newly imported micrographs
     path_to_uid_map = {
         clean_path_to_match(path): exp_dset["uid"][idx]
         for idx, path in enumerate(exp_dset["micrograph_blob/path"])
     }
-    # inverted map {uid:path}
-    uid_to_path_map = {v: k for k, v in path_to_uid_map.items()}
+    # map {uid:path} full path
+    uid_to_path_map = {
+        exp_dset["uid"][idx]: path
+        for idx, path in enumerate(exp_dset["micrograph_blob/path"])
+    }
 
     for index, particle in enumerate(particle_dset.rows()):
         # get the micrograph path associated with the particle
