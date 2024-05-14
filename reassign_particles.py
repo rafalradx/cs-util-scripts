@@ -83,7 +83,7 @@ def main(args: argparse.Namespace):
     # store new pixelsize
     particle_dset["alignments2D/psize_A"] = 0.8456
 
-    particle_dset.save(args.prtcls_path + ".new_uid")
+    particle_dset.save(args.prtcls_path)
 
 
 if __name__ == "__main__":
